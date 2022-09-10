@@ -18,7 +18,11 @@ jupyter notebook --notebook-dir C:\Users\Artemiy\Repo_python
     #Change directory in bash:
 cd C:\Users\Artemiy\Repo_python
 
-#Branches WORK:
-#Create and switch to a new branch:
+    #Branches WORK:
+    #Create and switch to a new branch (in local repo):
 git checkout -b <new branch name>
+git switch <existing_branch>
+git switch -c <non_existing_branch>
+    #work, add, commit, push
+#
 
