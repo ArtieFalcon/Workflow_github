@@ -23,6 +23,20 @@ cd C:\Users\Artemiy\Repo_python
 git checkout -b <new branch name>
 git switch <existing_branch>
 git switch -c <non_existing_branch>
-    #work, add, commit, push
-#
+    #work\changing file
+git status
+git add <file-name> #(OR git add -A)
+git commit <file-name> #(OR git commit -a)
+#No push possible (bc its a local branch) - may try push - it won't work
+    #MERGE two branches (loacaly). Remote repo doesn't know about second brench
+git checkout <main-branch-name> #switch to original brench
+git merge <merged-branch-name> 
+git status #to understand that push is needed of commited changes
+git push 
+
+    #create new branch in remote repo
+
+
+
+
 
