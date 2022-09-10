@@ -10,8 +10,15 @@ Commiting to Git
 6) GIT BASH: git push
 7) check in remote repo
 
+#COPY - highlight text + Enter
+#PASTE - right button click
+
     #Run JN from different directory:
 jupyter notebook --notebook-dir C:\Users\Artemiy\Repo_python
     #Change directory in bash:
 cd C:\Users\Artemiy\Repo_python
+
+#Branches WORK:
+#Create and switch to a new branch:
+git checkout -b <new branch name>
 
