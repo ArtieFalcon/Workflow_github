@@ -1,0 +1,12 @@
+Commiting to Git
+1) Save JNotebook in JLab
+2) GIT BASH: git status
+3) GIT BASH: git add <file-name>
+4) GIT BASH: git commit <file-name> #(or git commit -a)
+5) GIT BASH EDDITOR: # 1) press i
+		       2) type <commit-name>
+			3) press Esc
+			4) type :x! #save and exit
+6) GIT BASH: git push
+7) check in remote repo
+
