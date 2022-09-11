@@ -1,8 +1,9 @@
 Commiting to Git 
+(changes - stage - commit - push - pull request - merge)
 1) Save JNotebook in JLab
 2) GIT BASH: git status #(GIT BASH = Terminal)
-3) GIT BASH: git add <file-name>
-4) GIT BASH: git commit <file-name> #(or git commit -a)
+3) GIT BASH: git add <file-name> #adding to stage
+4) GIT BASH: git commit <file-name> #(or git commit -a) =saving to loacal repo
 5) GIT BASH EDDITOR: # 1) press i
 		       2) type <commit-name>
 			3) press Esc
@@ -46,10 +47,10 @@ git branch #to make sure you are now on new branch
     #MERGE in remote repo with pull request
 1) commit and push changes in a specific branch 
 2) go to remote repo and notice new changes in a specific branch 
-3) press "Compare and pull request" button
+3) press "Compare and pull request" button (or Open a pull request then Create a pull request)
 4) if its a conflict - it may be resolved right in remote repo edittor (by deleting strings like ">>>main" or '>>> <branch-name>') - then press 'Mark as resolved' button
-5) Press 'Merge..' button (add comments or reject pull request)
-
+5) Press 'Merge pull request' button (add comments or reject pull request)
+6) Press "Confirm merge" button
 
 
 
