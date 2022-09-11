@@ -40,6 +40,12 @@ git branch -d old-branch
 
     #create new branch in remote repo
 
+    #before making changes in file localy - make commit&push - to make up-to-date files with remote repo
+git pull #to check everything is up-to-date
+git checkout <branch_name_from_remote_repo> #switch to new remote branch 
+git branch #to make sure you are now on new branch
+
+
 
 
 
