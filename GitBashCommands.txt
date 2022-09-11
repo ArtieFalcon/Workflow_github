@@ -39,11 +39,17 @@ git branch –delete old-branch
 git branch -d old-branch
 
     #create new branch in remote repo
-
     #before making changes in file localy - make commit&push - to make up-to-date files with remote repo
 git pull #to check everything is up-to-date
 git checkout <branch_name_from_remote_repo> #switch to new remote branch 
 git branch #to make sure you are now on new branch
+    #MERGE in remote repo with pull request
+1) commit and push changes in a specific branch 
+2) go to remote repo and notice new changes in a specific branch 
+3) press "Compare and pull request" button
+4) if its a conflict - it may be resolved right in remote repo edittor (by deleting strings like ">>>main" or '>>> <branch-name>') - then press 'Mark as resolved' button
+5) Press 'Merge..' button (add comments or reject pull request)
+
 
 
 
