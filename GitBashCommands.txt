@@ -52,7 +52,9 @@ git branch #to make sure you are now on new branch
 5) Press 'Merge pull request' button (add comments or reject pull request)
 6) Press "Confirm merge" button
 
-
+_____________________________
+ls -a             #list of directory files
+cd <dir_name>     #change dir
 
 
 
