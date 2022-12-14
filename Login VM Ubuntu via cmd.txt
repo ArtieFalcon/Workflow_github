@@ -1,0 +1,2 @@
+<username in VM (when created)>@<publip ip - copy from overview VM>
+for example: ais@130.193.54.4
