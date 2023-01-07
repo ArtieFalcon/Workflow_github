@@ -11,3 +11,14 @@ created virtual environment CPython3.10.2.final.0-64 in 1684ms
 C:\Users\Artemiy\PycharmProjects>airflow\Scripts\activate
 
 (airflow) C:\Users\Artemiy\PycharmProjects>
+(airflow) C:\Users\Artemiy\PycharmProjects>set AIRFLOW_HOME=C:\Users\Artemiy\PycharmProjects\airflow
+
+REM this is a comment in cmd (starts just with "REM") 
+REM link to installation desc of airflow https://github.com/github/incubator-airflow/pkgs/container/incubator-airflow%2Fv1-10-test-python3.8 
+:: another comment
+
+(airflow) C:\Users\Artemiy\PycharmProjects> pip install apache-airflow==2.4.3  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.4.3/constraints-3.10.txt"
+
+(airflow) C:\Users\Artemiy\PycharmProjects>airflow db init
+(airflow) C:\Users\Artemiy\PycharmProjects>airflow webserver -p 8080 & 
+REM i stopped here with errors while installing
