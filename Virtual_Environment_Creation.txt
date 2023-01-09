@@ -18,6 +18,7 @@ REM link to installation desc of airflow https://github.com/github/incubator-air
 :: another comment
 
 (airflow) C:\Users\Artemiy\PycharmProjects> pip install apache-airflow==2.4.3  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.4.3/constraints-3.10.txt"
+OR: pip install apache-airflow==2.0.2  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.0.2/constraints-3.7.txt"
 
 (airflow) C:\Users\Artemiy\PycharmProjects>airflow db init
 (airflow) C:\Users\Artemiy\PycharmProjects>airflow webserver -p 8080 & 
