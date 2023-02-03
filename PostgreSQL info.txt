@@ -4,14 +4,14 @@ Port [5432]: 6432
 Username [postgres]: user1
 Password: S-!_
 
--------------COMMANDS-------------
+-------------COMMANDS------------
 \dn --show databases
 \dt+ --show tables
 create table cust (col1 integer, col2 character varying(40));
 db1=> \copy supplier from 'c:\KC\supplier.txt' with delimiter '|'; --download from local repo to db
 SELECT * FROM pg_catalog.pg_class -- info about all objects
 
-------------Examples--------------
+------------Examples-------------
 SELECT * FROM pg_class pc 
 JOIN pg_namespace pn 
 ON pn.oid=pc.relnamespace 
