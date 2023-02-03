@@ -5,7 +5,7 @@ F.e.    1st VM - MasterNode
 	3d  VM - DataNode
 	4th VM - DataNode etc.
 _______________________________________
-	MAKE CONNECTION
+	MAKE VM CONNECTION
 _______________________________________
 1. make sure you have files on your local repo for example: C:\Users\User1\Desktop\Karpov_DE\taxi_task
 2. Run cluster DataProc (Hadoop) that contains several VM (Nodes)
@@ -40,7 +40,7 @@ better to type all letters by hands, not copy-past
 When its Error like No such file or directory - sometimes its just about changing slash sign to revers slash - / \ -even if prev path was written differentaly
 
 ___________________________________________
-	Get files from S3 to VM
+	TRANSFER FILES FROM S3 to VM, HDFS
 ___________________________________________
 Для работы с amazon s3 установим утилиту awscli:
 $ apt install -y awscli
@@ -64,7 +64,6 @@ $ aws --profile=karpov-user --endpoint-url=https://storage.yandexcloud.net s3 cp
 $ hadoop fs -put /root/2020 2020
 Чтобы посмотреть данные в конце файла воспользуемся tail:
 hadoop fs -tail 2020/yellow_tripdata_2020-10.csv
-
 
 
 _____________________________________________
