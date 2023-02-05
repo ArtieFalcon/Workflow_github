@@ -1,0 +1,62 @@
+Hive is preinstalled when Cluster DataProc was created (it should be \/ check the box)
+1. Run cluster
+2. Connect to VM on cluster (choose VM f.e. MasterNode), get Public IP, $ ssh root@<Public IP>
+3. run hive on VM: $ hive
+4. Create Database in hive: hive> $ create database yellow_taxi location '/user/root/yellow_taxi_db'; (RAM: dont forget ";")
+
+
+
+___________________
+Not Tested
+___________________
+create table  yellow_taxi.Yellow_Taxi_Trip_Records
+(
+VendorID INT
+, tpep_pickup_datetime TIMESTAMP
+, tpep_dropoff_datetime TIMESTAMP
+, Passenger_count INT
+, Trip_distance DOUBLE 
+, PULocationID INT
+, DOLocationID INT
+, RateCodeID INT
+, Store_and_fwd_flag VARCHAR(8)
+, Payment_type INT
+, Fare_amount DOUBLE
+, Extra DOUBLE
+, MTA_tax DOUBLE 
+, Improvement_surcharge DOUBLE
+, Tip_amount DOUBLE
+, Tolls_amount DOUBLE 
+, Total_amount DOUBLE
+, Congestion_Surcharge DOUBLE
+, Airport_fee DOUBLE
+)
+stored as parquet;
+
+create table  yellow_taxi.VendorID_xref
+(
+ id int
+ , name string
+)
+stored as parquet;
+
+create table  yellow_taxi.RateCodeID_xref
+(
+ id int
+ , name string
+)
+stored as parquet;
+
+create table  yellow_taxi.Payment_type _xref
+(
+ id int
+ , name string
+)
+stored as parquet;
+
+
+
+
+
+
+

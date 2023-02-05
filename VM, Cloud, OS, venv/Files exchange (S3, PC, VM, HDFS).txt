@@ -64,8 +64,26 @@ $ aws --profile=karpov-user --endpoint-url=https://storage.yandexcloud.net s3 cp
 $ hadoop fs -put /root/2020 2020
 Чтобы посмотреть данные в конце файла воспользуемся tail:
 hadoop fs -tail 2020/yellow_tripdata_2020-10.csv
+_____________________________________________
+FROM VM to S3 Object storage
+____________________________________________
+For created 'ais' service account
+AWS Access Key ID: ID of a static key: YCAJEBG2YXEUNzhFeNtGFlIM0
+AWS Secret Access Key: YCMTMgiq6bcCoQm735GeSqOefGEBZz3wWbDTRASC
+Default region name: ru-central1
+Format: Json
 
+To upload=copy files from local repo to bucket:
+$ aws --endpoint-url=https://storage.yandexcloud.net/ \
+  s3 cp /home/ais/yellow_tripdata_2020-12.csv s3://bucketasokolov/122 (RAM: 112 -path_style_prefix future file_name in bucket)
 
+optional:
+we need to install utilite to use method "GET":
+$ sudo apt install libwww-perl
+See content in a bucket (json format):
+$ GET https://bucketasokolov.storage.yandexcloud.net
+
+$ aws s3 --endpoint-url=https://bucketasokolov.storage.yandexcloud.net ls
 _____________________________________________
 	MAP-REDUCE
 _____________________________________________
