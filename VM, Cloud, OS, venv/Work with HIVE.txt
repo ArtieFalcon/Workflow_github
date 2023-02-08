@@ -9,29 +9,42 @@ Hive is preinstalled when Cluster DataProc was created (it should be \/ check th
 ___________________
 Not Tested
 ___________________
-create table  yellow_taxi.Yellow_Taxi_Trip_Records
+create database yellow_taxi location 's3a://bucketasokolov/' ; --'/user/root' ; --'s3a://karpov-data/';
+drop database yellow_taxi2 CASCADE;
+drop table yellow_taxi.yellow_taxi_trip_tab;
+drop table yellow_taxi.yellow_taxi_trip_records
+;
+select count(*) over(), * from yellow_taxi.yellow_taxi_trip_records
+;
+create external table  yellow_taxi.yellow_taxi_trip_records
 (
-VendorID INT
-, tpep_pickup_datetime TIMESTAMP
-, tpep_dropoff_datetime TIMESTAMP
-, Passenger_count INT
-, Trip_distance DOUBLE 
-, PULocationID INT
-, DOLocationID INT
-, RateCodeID INT
-, Store_and_fwd_flag VARCHAR(8)
-, Payment_type INT
-, Fare_amount DOUBLE
-, Extra DOUBLE
-, MTA_tax DOUBLE 
-, Improvement_surcharge DOUBLE
-, Tip_amount DOUBLE
-, Tolls_amount DOUBLE 
-, Total_amount DOUBLE
-, Congestion_Surcharge DOUBLE
-, Airport_fee DOUBLE
+vendorid int
+, tpep_pickup_datetime timestamp
+, tpep_dropoff_datetime timestamp
+, passenger_count int
+, trip_distance double 
+, pulocationid int
+, dolocationid int
+, ratecodeid int
+, store_and_fwd_flag varchar(8)
+, payment_type int
+, fare_amount double
+, extra double
+, mta_tax double 
+, improvement_surcharge double
+, tip_amount double
+, tolls_amount double 
+, total_amount double
+, congestion_surcharge double
+, airport_fee double
 )
-stored as parquet;
+partitioned by (dt date)
+row format delimited
+fields terminated by ','
+stored as parquet
+--location '/user/root/input-data'
+location 's3a://bucketasokolov/' --/yellow-taxi-2020'
+;
 
 create table  yellow_taxi.VendorID_xref
 (
