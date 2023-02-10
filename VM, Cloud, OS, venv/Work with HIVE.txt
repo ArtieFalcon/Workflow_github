@@ -58,10 +58,40 @@ select count(*) over(), *
 from yellow_taxi.yellow_taxi_trip_records;
 describe yellow_taxi.yellow_taxi_trip_records;
 
-drop table  yellow_taxi.yellow_taxi_trip_records;
+-- Now we create partitioned table and set new location for it 's3a://bucketasokolov/part' 
+create external table  yellow_taxi.yellow_taxi_trip_records_part
+(
+vendorid string
+, tpep_pickup_datetime timestamp
+, tpep_dropoff_datetime timestamp
+, passenger_count int
+, trip_distance double 
+, ratecodeid int
+, store_and_fwd_flag string
+, pulocationid int
+, dolocationid int
+, payment_type int
+, fare_amount double
+, extra double
+, mta_tax double 
+, tip_amount double
+, tolls_amount double 
+, improvement_surcharge double
+, total_amount double
+, congestion_surcharge double
+)
+partitioned by (dt date)
+row format delimited
+fields terminated by ','
+lines terminated by '\n'
+stored as parquet
+--location 'hdfs:///user/root/input-data' -- it works
+location 's3a://bucketasokolov/part' 
+TBLPROPERTIES ("skip.header.line.count"="1");
 
 
-
+insert into yellow_taxi.yellow_taxi_trip_records_part partition(dt='2020-01-01')
+select * from yellow_taxi.yellow_taxi_trip_records t where to_date(t.tpep_pickup_datetime) = '2020-01-01';
 
 
 create table  yellow_taxi.vendorid_xref
@@ -92,7 +122,7 @@ insert into table yellow_taxi.payment_type_xref values (1, 'Credit card'), (2, '
 create table  yellow_taxi.yellow_taxi_trip_tab
 (
  payment_type int
- , dt string
+ , dt date
  , tips_average_amount double
  , passengers_total int
 )
@@ -100,11 +130,9 @@ stored as parquet;
 
 insert into table yellow_taxi.yellow_taxi_trip_tab
 (payment_type, dt, tips_average_amount, passengers_total)
-select payment_type, '2020' dt, avg(tip_amount) as tips_average_amount, count(passenger_count) as passengers_total
-from yellow_taxi.yellow_taxi_trip_records
-group by payment_type;
+select payment_type, dt, avg(tip_amount) as tips_average_amount, count(passenger_count) as passengers_total
+from yellow_taxi.yellow_taxi_trip_records_part
+group by payment_type, dt;
 
 create view if not exists yellow_taxi.v_yellow_taxi_trip_records 
  as select * from yellow_taxi.yellow_taxi_trip_tab;
-
-
