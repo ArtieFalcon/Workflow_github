@@ -1,75 +1,110 @@
 Hive is preinstalled when Cluster DataProc was created (it should be \/ check the box)
 1. Run cluster
 2. Connect to VM on cluster (choose VM f.e. MasterNode), get Public IP, $ ssh root@<Public IP>
+2.1. OR just connect through DBeaver (Hive-Connection Settings-Main tab; Connect by = Host; Host: 84.201.186.108 (Public IP of VM MasterNode); 
+		Port = 10000; Database\Schema: Null; UserName\Password: Null; SHH tab: NOT! use ssh tunnel)
 3. run hive on VM: $ hive
 4. Create Database in hive: hive> $ create database yellow_taxi location '/user/root/yellow_taxi_db'; (RAM: dont forget ";")
 
 
+Tips: 
+1. since Hive doesnt raise errors while creating tables, properly match fields in your files and inside create statement 
+and properly check 
+= fields terminated by ','
+= lines terminated by '\n'
+___________________
+Working code:
+___________________
+-- database can be created in Cloud-bucket or in hdfs (location --'hdfs:///user/root/' ;)
+create database yellow_taxi location 's3a://bucketasokolov/yellow-taxi-2020';
+-- if there is no such folder new folder "yellow-taxi-2020" will be created in bucket "bucketasokolov". You may create db just in location 's3a://bucketasokolov/';
+show databases;
+show tables from yellow_taxi;
+drop database yellow_taxi CASCADE;
+drop table yellow_taxi.yellow_taxi_trip_records;
 
-___________________
-Not Tested
-___________________
-create database yellow_taxi location 's3a://bucketasokolov/' ; --'/user/root' ; --'s3a://karpov-data/';
-drop database yellow_taxi2 CASCADE;
-drop table yellow_taxi.yellow_taxi_trip_tab;
-drop table yellow_taxi.yellow_taxi_trip_records
-;
-select count(*) over(), * from yellow_taxi.yellow_taxi_trip_records
-;
+--external tables is always better
 create external table  yellow_taxi.yellow_taxi_trip_records
 (
-vendorid int
+vendorid string
 , tpep_pickup_datetime timestamp
 , tpep_dropoff_datetime timestamp
 , passenger_count int
 , trip_distance double 
+, ratecodeid int
+, store_and_fwd_flag string
 , pulocationid int
 , dolocationid int
-, ratecodeid int
-, store_and_fwd_flag varchar(8)
 , payment_type int
 , fare_amount double
 , extra double
 , mta_tax double 
-, improvement_surcharge double
 , tip_amount double
 , tolls_amount double 
+, improvement_surcharge double
 , total_amount double
 , congestion_surcharge double
-, airport_fee double
 )
-partitioned by (dt date)
+--partitioned by (dt string)
 row format delimited
 fields terminated by ','
-stored as parquet
---location '/user/root/input-data'
-location 's3a://bucketasokolov/' --/yellow-taxi-2020'
-;
+lines terminated by '\n'
+--stored as parquet
+location 's3a://bucketasokolov/yellow-taxi-2020' -- link to place where data\files\tables are located.
+--location 'hdfs:///user/root/input-data' -- = link to place where data\files are. it works
+TBLPROPERTIES ("skip.header.line.count"="1");
 
-create table  yellow_taxi.VendorID_xref
+select count(*) over(), *
+from yellow_taxi.yellow_taxi_trip_records;
+describe yellow_taxi.yellow_taxi_trip_records;
+
+drop table  yellow_taxi.yellow_taxi_trip_records;
+
+
+
+
+
+create table  yellow_taxi.vendorid_xref
 (
  id int
  , name string
 )
 stored as parquet;
+insert into table yellow_taxi.vendorid_xref values (1, 'creative mobile technologies, llc'), (2, 'verifone inc.');
 
-create table  yellow_taxi.RateCodeID_xref
+create table  yellow_taxi.ratecodeid_xref
 (
  id int
  , name string
 )
 stored as parquet;
+insert into table yellow_taxi.ratecodeid_xref values (1, 'standard rate'), (2, 'jfk'), (3, 'newark'), (4, 'nassau or westchester'), (5, 'negotiated fare'), (6, 'group ride');
 
-create table  yellow_taxi.Payment_type _xref
+create table  yellow_taxi.payment_type_xref
 (
  id int
  , name string
 )
 stored as parquet;
+insert into table yellow_taxi.payment_type_xref values (1, 'Credit card'), (2, 'Cash'), (3, 'No charge')
+, (4, 'Dispute'), (5, 'Unknown'), (6, 'Voided trip');
 
+create table  yellow_taxi.yellow_taxi_trip_tab
+(
+ payment_type int
+ , dt string
+ , tips_average_amount double
+ , passengers_total int
+)
+stored as parquet;
 
+insert into table yellow_taxi.yellow_taxi_trip_tab
+(payment_type, dt, tips_average_amount, passengers_total)
+select payment_type, '2020' dt, avg(tip_amount) as tips_average_amount, count(passenger_count) as passengers_total
+from yellow_taxi.yellow_taxi_trip_records
+group by payment_type;
 
-
-
+create view if not exists yellow_taxi.v_yellow_taxi_trip_records 
+ as select * from yellow_taxi.yellow_taxi_trip_tab;
 
 
