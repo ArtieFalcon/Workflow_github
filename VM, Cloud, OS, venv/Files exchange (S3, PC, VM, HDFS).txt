@@ -45,21 +45,21 @@ ___________________________________________
 Для работы с amazon s3 установим утилиту awscli:
 $ apt install -y awscli
 Создадим именованный профиль AWS
-aws configure --profile=karpov-user
+aws configure --profile=a-sokolov-6
 karpov-user - это имя профиля (можно выбрать любое)
 Далее нас попросят ввести ключи, имя региона и формат вывода:
-- AWS_ACCESS_KEY -- YCAJEaWZCK9f1rSrcK5RODNa_
-- AWS_SECRET_KEY -- YCO8oyvOPdxfBozri_OOZqjPiQrs6R60rrORfNDl
+- AWS_ACCESS_KEY -- ***
+- AWS_SECRET_KEY -- ***
 - REGION -- ru-central1
 - OUTPUT_FORMAT -- json
 И теперь, чтобы посмотреть содержимое бакета, нужно выполнить команду:
-$ aws --profile=karpov-user --endpoint-url=https://storage.yandexcloud.net s3 ls s3://ny-taxi-data/ny-taxi/
+$ aws --profile=a-sokolov-6 --endpoint-url=https://storage.yandexcloud.net s3 ls s3://ny-taxi-data/ny-taxi/
 Download file:
-$ aws --profile=karpov-user --endpoint-url=https://storage.yandexcloud.net s3 cp s3://ny-taxi-data/ny-taxi/yellow_tripdata_2020-12.csv ./
+$ aws --profile=a-sokolov-6 --endpoint-url=https://storage.yandexcloud.net s3 cp s3://ny-taxi-data/ny-taxi/yellow_tripdata_2020-12.csv ./
 Загрузим скачанный файл на HDFS с размером блока 64Мб и двойной репликацией:
 $ hadoop fs -Ddfs.blocksize=67108864 -Ddfs.replication=2 -put yellow_tripdata_2020-12.csv
 
-$ aws --profile=karpov-user --endpoint-url=https://storage.yandexcloud.net s3 cp --recursive s3://ny-taxi-data/ny-taxi/ ./2020
+$ aws --profile=a-sokolov-6 --endpoint-url=https://storage.yandexcloud.net s3 cp --recursive s3://ny-taxi-data/ny-taxi/ ./2020
 И следующим шагом переложим их на HDFS тоже в директорию 2020:
 $ hadoop fs -put /root/2020 2020
 Чтобы посмотреть данные в конце файла воспользуемся tail:
