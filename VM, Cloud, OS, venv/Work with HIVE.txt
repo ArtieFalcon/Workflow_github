@@ -10,7 +10,7 @@ Hive is preinstalled when Cluster DataProc was created (it should be \/ check th
 Tips: 
 1. since Hive doesnt raise errors while creating tables, properly match fields in your files and inside create statement 
 and properly check 
-= fields terminated by ','
+= fields terminated by ',' 
 = lines terminated by '\n'
 ___________________
 Working code:
