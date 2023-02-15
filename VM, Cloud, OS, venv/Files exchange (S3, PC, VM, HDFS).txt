@@ -84,6 +84,37 @@ See content in a bucket (json format):
 $ GET https://bucketasokolov.storage.yandexcloud.net
 
 $ aws s3 --endpoint-url=https://bucketasokolov.storage.yandexcloud.net ls
+
+_____________________________________________
+		from s3 to local repo (from venv)
+_____________________________________________
+
+RAM: Everithing below is in venv. Check:
+> aws --version
+
+cmd: Install or update the AWS CLI
+> msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+check:
+> aws --version
+RAM: Installation 
+> pip install awscli
+check:
+> aws --version
+OUTPUT: aws-cli/1.27.71 Python/3.11.1 Windows/10 botocore/1.29.71
+
+RAM: don't forget config:
+aws configure --profile= karpov-user
+- AWS_ACCESS_KEY -- ****
+- AWS_SECRET_KEY -- ****
+- REGION -- ru-central1
+- OUTPUT_FORMAT -- json
+
+
+RAM:  ./data - end local folder
+> aws --profile=karpov-user --endpoint-url=https://storage.yandexcloud.net s3 cp s3://bucketasokolov/ye
+llow_tripdata_2020-04.csv ./data
+
+
 _____________________________________________
 	MAP-REDUCE
 _____________________________________________

@@ -1,5 +1,16 @@
 Create virtual Environment
 C:\Users\Artemiy>cd C:\Users\Artemiy\PycharmProjects\
+> pip install virtualenv
+RAM: if ">virtualenv airflow" doesnt work
+RAM: Run PowerShall as admin
+RAM: > Set-ExecutionPolicy -Scope CurrentUser
+RAM: Укажите значения для следующих параметров:
+RAM: ExecutionPolicy: RemoteSigned
+
+> venv/Scripts/activate
+
+
+_____________________________________________________________
 
 C:\Users\Artemiy\PycharmProjects>virtualenv airflow
 created virtual environment CPython3.10.2.final.0-64 in 1684ms
