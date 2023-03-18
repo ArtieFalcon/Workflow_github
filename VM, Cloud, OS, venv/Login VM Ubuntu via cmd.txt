@@ -1,2 +1,12 @@
 <username in VM (when created)>@<publip ip - copy from overview VM>
-for example: ais@130.193.54.4
+for example: $ ais@130.193.54.4
+OR via path to local saved ssh-key AND CHANGE RIGHTS:
+(in Windows 10:
+Изменение прав на ключ .PEM в Windows
+Средство изменения прав на ключ .pem в Windows:
+
+Откройте свойства файла key.pem.
+«Безопасность» → «Дополнительно» → «Отключить наследование».
+Затем «Добавить» → выберите субъект → в поле ввода напишите имя пользователя на данном ПК, от имени которого открывается консоль (powershell).
+Везде нажать «ОК».)
+$ ssh -i C:\Users\Artemiy\Desktop\Karpov_DE\VK_CS\AIS-Ubuntu-Standard-2-4-100GB-CSUW1DYu.pem ubuntu@37.139.40.24
