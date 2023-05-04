@@ -17,3 +17,4 @@ JOIN pg_namespace pn
 ON pn.oid=pc.relnamespace 
 WHERE nspname= 'public' 
 ORDER BY relname; -- all about precise schema= public
+s
