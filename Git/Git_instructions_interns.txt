@@ -1,4 +1,6 @@
-GIT instructions for interns
+GIT instructions for interns 
+(для установки Git локально можно воспользоваться инструкцией https://github.com/git-guides/install-git)
+Далее инструкция для внутреннего контура
 1. Создание репозитория https: //bitbucket.int...
 	"Create repository" button
 	Name new repo, add description, create repo
