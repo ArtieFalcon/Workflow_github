@@ -3,7 +3,7 @@ GIT instructions for interns
 Далее инструкция для внутреннего контура
 1. Создание репозитория https: //bitbucket.int...
 	"Create repository" button
-	Name new repo, add description, create repo
+	Name new repo, add description, create repository
 2. Конфигурация + Клонирование репозитория
 	Открыть локальную директорию, в которой будет храниться удаленный репозиторий
 	(например, C:\Users\gp94\PycharmProjects)
