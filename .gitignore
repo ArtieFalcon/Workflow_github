@@ -1,5 +1,5 @@
 file_to_be_ignored.txt
-README.md
+README2.md
 
 #to really ignore files after creation:
 # git rm --cached secrets.txt
